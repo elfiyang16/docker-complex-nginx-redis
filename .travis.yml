@@ -12,6 +12,10 @@ after_success:
   - docker build -t elfiyang16/multi-nginx ./nginx
   - docker build -t elfiyang16/multi-server ./server
   - docker build -t elfiyang16/multi-worker ./worker
-# Login to docker CLI
-
-# Take those images and push them to docker hub
+  # Login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push elfiyang16/multi-client
+  - docker push elfiyang16/multi-nginx
+  - docker push elfiyang16/multi-server
+  - docker push elfiyang16/multi-worker
